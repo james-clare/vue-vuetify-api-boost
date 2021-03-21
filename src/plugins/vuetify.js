@@ -19,5 +19,10 @@ export default new Vuetify({
   },
   icons: {
     iconfont: "mdi"
+  },
+  breakpoint: {
+    thresholds: {
+      lg: 1024
+    }
   }
 });

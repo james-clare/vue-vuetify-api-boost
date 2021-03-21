@@ -27,7 +27,7 @@
             style="cursor:pointer;color:grey;text-decoration:underline"
             @click="creditsDialog = true"
           >
-            <Credits @input="creditsDialog = false"></Credits> </span
+          </span
           >&nbsp;| &nbsp;
           <a href="https://pragital.com" target="_blank" style="color:grey"
             >Pragital Powered.</a
@@ -40,10 +40,6 @@
 
 <script>
 export default {
-  components: {
-    Credits: () => import("../Credits")
-  },
-
   data() {
     return {
       creditsDialog: false,

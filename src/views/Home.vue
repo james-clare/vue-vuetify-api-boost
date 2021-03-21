@@ -1,44 +1,27 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="12">
-      <HomeHero></HomeHero>
-    </v-col>
-
-    <v-container grid-list-md fluid>
-      <v-col id="features" cols="12"></v-col>
-      <v-col cols="12">
-        <HomeFeatures></HomeFeatures>
-      </v-col>
-    </v-container>
-  </v-row>
+  <v-main>
+    <transition name="fade">
+      <Welcome v-if="!started" @start="started = true"></Welcome>
+    </transition>
+    <transition name="fade">
+      <VideoHolder v-if="started"></VideoHolder>
+    </transition>
+    <!-- <v-img src="../assets/img/newspaper-bg.jpg" contain max-width="100vw" /> -->
+  </v-main>
 </template>
 
 <script>
 export default {
   name: "Home",
-
   components: {
-    HomeHero: () => import("../components/HomeHero"),
-    HomeFeatures: () => import("../components/HomeFeatures")
+    Welcome: () => import("../components/Welcome"),
+    VideoHolder: () => import("../components/VideoHolder")
   },
-
-  mounted() {
-    if (this.$route.hash) {
-      setTimeout(() => this.scrollTo(this.$route.hash), 1);
-    }
+  data() {
+    return {
+      started: true
+    };
   },
-
-  methods: {
-    getImgUrl(img) {
-      return require("@/assets/" + img);
-    },
-    scrollTo: function(hashtag) {
-      setTimeout(() => {
-        location.href = hashtag;
-      }, 1);
-    }
-  },
-
   head: {
     title: {
       inner: "Home"
@@ -49,10 +32,22 @@ export default {
         id: "home",
         content: "Home's very real."
       }
-    ],
-    link: [
-      { rel: "canonical", href: "https://techformist.com/", id: "canonical" }
     ]
   }
 };
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+main {
+  height: 100vh;
+  background: url(../assets/img/newspaper-bg.jpg) no-repeat 0% 0%/100%;
+  background-position: center center;
+}
+</style>

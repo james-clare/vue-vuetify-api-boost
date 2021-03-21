@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
+// import vueVimeoPlayer from "vue-vimeo-player";
 import VTooltip from "v-tooltip";
 
 Vue.config.productionTip = false;

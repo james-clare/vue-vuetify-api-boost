@@ -12,71 +12,17 @@ Vue.use(VueRouter);
 //   else next("/login");
 // }
 
-function dynamicHome(to, from, next) {
-  if (store.state.authentication.token) next("/dashboard");
-  else next();
-}
-
-function logout(to, from, next) {
-  if (store.state.authentication.token) store.dispatch("authentication/logout");
-  next("/login");
-}
-
 const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
-    beforeEnter: dynamicHome
-  },
-  {
-    path: "/signup",
-    name: "signup",
-    component: () =>
-      import(/* webpackChunkName: "register" */ "../views/Register.vue")
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "../views/Login.vue")
-  },
-  {
-    path: "/logout",
-    name: "logout",
-    beforeEnter: logout
+    component: Home
   },
   {
     path: "/terms",
     name: "Terms",
     component: () =>
       import(/* webpackChunkName: "terms" */ "../views/Terms.vue")
-  },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: () =>
-      import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
-  },
-  {
-    path: "/sr",
-    name: "ServiceReq",
-    component: () => import("../views/ServiceReq.vue")
-  },
-  {
-    path: "/contact-us",
-    name: "Contact Us",
-    component: () =>
-      import(/* webpackChunkName: "contact-us" */ "../views/ContactUs.vue")
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     // catch all 404
